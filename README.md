@@ -1,4 +1,4 @@
-# love599-ssr
+# vue-nuxt
 
 > My awe-inspiring Nuxt.js project
 
