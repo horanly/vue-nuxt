@@ -1,5 +1,9 @@
 import pkg from './package'
+
 export default {
+  env: {
+    PATH_TYPE: process.env.PATH_TYPE
+  },
   mode: 'universal',
   /*
   ** Headers of the page
@@ -75,15 +79,7 @@ export default {
     ** You can extend webpack config here
     */
     extend (config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
+
     }
   }
 }

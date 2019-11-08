@@ -1,43 +1,25 @@
 import axios from "axios"
 import {Message, Notification} from 'element-ui'
+import config from "./config";
+import URL from "./baseURL"
 
-axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-
-// const urlKey = location.host
-// const ipConfig = {
-//   'localhost:9006': {
-//     baseUrl: 'http://192.168.1.4:9807'
-//   },
-//   '127.0.0.1:9006': {
-//     baseUrl: 'http://192.168.1.4:9807'
-//   },
-//   '192.168.1.4:9006': {
-//     baseUrl: 'http://192.168.1.4:9807'
-//   }
-// }
-const server = axios.create({
-  timeout: 10000
-})
-
-// const baseURL = ipConfig[urlKey].baseUrl || ''
-   const baseURL = 'http://192.168.1.4:9807'
+const server = axios.create(config)
 
 // 请求拦截
 server.interceptors.request.use(config => {
-  config.url = baseURL + config.url
+  config.url = URL.baseURL + config.url
 
-  let token = localStorage.getItem('author')
-  if (token) {
-    config.headers.Authorization = token
-  }
-  console.log(config,'request')
+  // let token = localStorage.getItem('author')
+  // if (token) {
+  //   config.headers.Authorization = token
+  // }
+  // console.log(config,'request')
   return config
 })
 
 // 响应拦截
 server.interceptors.response.use(res => {
-  console.log(res,'response')
+  // console.log(res,'response')
   if (res.data) {
     if (res.data.status !== 0) {
       Message({
@@ -48,23 +30,7 @@ server.interceptors.response.use(res => {
     }
     return res.data
   } else {
-    return res.data
-  }
-}, error => {
-  if (error.response) {
-    switch (error.response.status) {
-      case 400: {
-        if (error.response && error.response.data && error.response.data.message) {
-          Notification.error({
-            title: '400错误',
-            message: error.response.data.message,
-            duration: 5000,
-            closable: true
-          })
-        }
-        break
-      }
-    }
+    return res
   }
 })
 

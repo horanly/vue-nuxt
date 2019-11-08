@@ -20,7 +20,7 @@
       </el-col>
       <el-col :span="14">
         <div class="demo-image__lazy" v-for="list in listData" :key="list.userId">
-          <el-image :src="list.avatar" lazy></el-image>
+          <el-image :src="list.avatar" :alt="list.nickname" lazy></el-image>
         </div>
       </el-col>
     </el-row>
@@ -39,7 +39,7 @@
       }
     },
     async asyncData(context) {
-      console.log(context, 'asyncData')
+      // console.log(context, 'asyncData')
       let paramsSearch = {
         platform: 'web',
         type: 1
@@ -57,7 +57,7 @@
       return {searchData: searchList.data, listData: indexList.data}
     },
     created() {
-      console.log(this.listData)
+      // console.log(this.listData)
     }
   }
 </script>
