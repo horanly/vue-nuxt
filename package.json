@@ -6,9 +6,10 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "npm run lint && nuxt build && npm start",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.6.0",
@@ -19,7 +20,9 @@
     "nuxt": "^2.0.0",
     "sass-loader": "^8.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gh-pages": "^2.1.1"
+  },
   "config": {
     "nuxt": {
       "host": "localhost",

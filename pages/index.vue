@@ -1,16 +1,14 @@
 <template>
-  <div class="container">
-    <div>
-      <template>
-        <section>
-          <div>
-            Index
-            <nuxt-link to="/test/list">news</nuxt-link>
-          </div>
-        </section>
-      </template>
+  <section>
+    <div class="nav">
+      <el-button type="text">
+        <nuxt-link to="/test/list">Go to List</nuxt-link>
+      </el-button>
     </div>
-  </div>
+    <div class="container">
+      This is Index
+    </div>
+  </section>
 </template>
 
 <script>
@@ -24,7 +22,7 @@ export default {
 <style>
 .container {
   margin: 0 auto;
-  /* min-height: 100vh; 
+  /* min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
