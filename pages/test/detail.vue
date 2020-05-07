@@ -40,14 +40,8 @@
     },
     async asyncData(context) {
       // console.log(context, 'asyncData')
-      let paramsSearch = {
-        platform: 'web',
-        type: 1
-      }
-      let paramsList = {
-        platform: 'web',
-        type: 1
-      }
+      let paramsSearch = {}
+      let paramsList = {}
       let [searchList, indexList] = await Promise.all([
         await getSearchList(paramsSearch),
         await getIndexList(paramsList)

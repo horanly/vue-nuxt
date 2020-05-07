@@ -12,7 +12,7 @@ export function login (data) {
 // 获取列表
 export function getIndexList (data){
   return request({
-    url: '/pc/index/public/termSearch',
+    url: '/api/v1/topics?page=1&limit=20&tab=all',
     method: 'get',
     params: data
   })
@@ -21,7 +21,7 @@ export function getIndexList (data){
 // 获取列表
 export function getSearchList (data){
   return request({
-    url: '/pc/index/public/searchItem',
+    url: '/api/v1/topics?page=1&limit=20&tab=all',
     method: 'get',
     params: data
   })
