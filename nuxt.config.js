@@ -32,7 +32,7 @@ module.exports = {
     '@nuxtjs/pwa'
   ],
   router: {
-    // middleware: 'redirect'
+    middleware: 'redirect'
   },
   axios: {
     baseURL: 'https://proxy-oagpwnbkpe.now.sh',
