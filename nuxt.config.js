@@ -1,85 +1,45 @@
-import pkg from './package'
-
-export default {
-  env: {
-    PATH_TYPE: process.env.PATH_TYPE
-  },
-  mode: 'universal',
-  /*
-  ** Headers of the page
-  */
+module.exports = {
   head: {
-    title: pkg.name || '',
+    title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/icon.png' },
+      {
+        rel: 'stylesheet',
+        href: 'https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.css'
+      }
     ]
   },
-  /*
-  ** Customize the progress-bar color
-  */
-  // loading: { color: '#fff' },
-  loading: '~/components/loading.vue',
-  /*
-  ** Global CSS
-  */
+  loading: { color: '#409EFF' },
   css: [
-    'element-ui/lib/theme-chalk/index.css',
-    // '@/assets/styles/mian.scss'
+    '@/assets/css/main.scss',
+    'element-ui/lib/theme-chalk/index.css'
   ],
-  /*
-  ** Plugins to load before mounting the App
-  */
   plugins: [
-    {
-      src:'~/plugins/element-ui',
-      ssr: true //是能在服务端运行
-    }
+    '@/plugins/element-ui.js',
+    '@/plugins/muse-ui.js',
+    '@/plugins/filters.js'
   ],
-  /*
-  ** Nuxt.js dev-modules
-  */
   buildModules: [
+    '@nuxtjs/eslint-module'
   ],
-  /*
-  ** Nuxt.js modules
-  */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/pwa'
   ],
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
+  router: {
+    // middleware: 'redirect'
+  },
   axios: {
-    // proxy: true,
-    // prefix: '/api', // baseURL
-    // credentials: true,
+    baseURL: 'https://proxy-oagpwnbkpe.now.sh',
+    credentials: false,
+    proxyHeaders: false
   },
-  proxy: {
-    // '/api/': {
-    //   target: 'http://127.0.0.1:3001', // 代理地址
-    //   changeOrigin: true,
-    //   pathRewrite: {
-    //     '^/api': ''
-    //   },
-    // },
-  },
-  /*
-  ** Build configuration
-  */
   build: {
-    transpile: [/^element-ui/],
-    /*
-    ** You can extend webpack config here
-    */
-    extend (config, ctx) {
-
-    }
+    transpile: [/^element-ui/]
   }
 }

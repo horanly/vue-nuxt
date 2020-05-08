@@ -1,5 +1,4 @@
 import axios from "axios"
-import {Message, Notification} from 'element-ui'
 import config from "./config";
 import URL from "./baseURL"
 
@@ -21,13 +20,6 @@ server.interceptors.request.use(config => {
 server.interceptors.response.use(res => {
   // console.log(res,'response')
   if (res.data) {
-    if (res.data.status !== 0) {
-      Message({
-        type: 'error',
-        message: res.data.msg,
-        duration: 5000
-      })
-    }
     return res.data
   } else {
     return res

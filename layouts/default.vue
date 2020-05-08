@@ -1,45 +1,98 @@
 <template>
-  <div>
-    <!-- 公共头部组件 -->
-    <v-header></v-header>
-
-    <!-- 路由视图，相当于router-view -->
-    <nuxt />
-
-    <!-- 公共底部组件 -->
-    <footer></footer>
-  </div>
+  <el-container>
+    <el-header>
+      <el-menu
+        :default-active="activeIndex"
+        mode="horizontal"
+        router
+      >
+        <el-menu-item index="/">
+          最热
+        </el-menu-item>
+        <el-menu-item index="/new">
+          最新
+        </el-menu-item>
+        <el-menu-item index="/tab/tech">
+          技术
+        </el-menu-item>
+        <el-menu-item index="/tab/creative">
+          创意
+        </el-menu-item>
+        <el-menu-item index="/tab/play">
+          好玩
+        </el-menu-item>
+        <el-menu-item index="/tab/apple">
+          Apple
+        </el-menu-item>
+        <el-menu-item index="/tab/jobs">
+          酷工作
+        </el-menu-item>
+        <el-menu-item index="/tab/deals">
+          交易
+        </el-menu-item>
+        <el-menu-item index="/tab/city">
+          城市
+        </el-menu-item>
+        <el-menu-item index="/tab/qna">
+          问与答
+        </el-menu-item>
+        <el-menu-item index="/tab/nodes">
+          节点
+        </el-menu-item>
+      </el-menu>
+    </el-header>
+    <el-main>
+      <nuxt keep-alive />
+    </el-main>
+    <el-footer>
+      <!-- <span>
+        Copyright © 2016-{{ year }} Orange
+      </span> -->
+      <span>
+        Copyright © {{ year }}
+      </span>
+    </el-footer>
+  </el-container>
 </template>
 
 <script>
-import vHeader from "~/components/header.vue";
-import Footer from "~/components/footer.vue";
-
 export default {
-  components: {
-    Footer,
-    vHeader
+  data () {
+    return {
+      activeIndex: '/',
+      year: new Date().getFullYear()
+    }
+  },
+  created () {
+    this.activeIndex = this.$route.path
   }
-};
+}
 </script>
 
-<style>
-html {
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  /* word-spacing: 1px; */
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+<style lang="scss" scoped>
+.el-container {
+  min-width: 960px;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
+.el-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: #f7fbfd;
+  line-height: 60px;
+}
+
+.github {
+  height: 36px;
+  font-size: 36px;
+  color: #c8d6e8;
+
+  line-height: 36px;
+
+  &:hover {
+    transform: scale(1.2);
+    color: #8d99ab;
+  }
 }
 </style>

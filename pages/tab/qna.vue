@@ -1,8 +1,9 @@
 <template>
-  <topic-list-chalk :topic-list="hotList" />
+  <topic-list-chalk :topic-list="qnaList" />
 </template>
 
 <script>
+import { fetchTopicList } from '~/utils'
 import TopicListChalk from '~/components/TopicListChalk'
 
 export default {
@@ -10,15 +11,16 @@ export default {
     TopicListChalk
   },
   async asyncData ({ app }) {
-    const { data } = await app.$axios.get('topics/hot.json')
+    const nodes = ['qna']
+    const qnaList = await fetchTopicList(app.$axios, nodes)
 
     return {
-      hotList: data
+      qnaList
     }
   },
   head () {
     return {
-      titleTemplate: '%s - 最热'
+      titleTemplate: '%s - 问与答'
     }
   }
 }

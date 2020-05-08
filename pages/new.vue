@@ -1,5 +1,5 @@
 <template>
-  <topic-list-chalk :topic-list="hotList" />
+  <topic-list-chalk :topic-list="newList" />
 </template>
 
 <script>
@@ -10,15 +10,15 @@ export default {
     TopicListChalk
   },
   async asyncData ({ app }) {
-    const { data } = await app.$axios.get('topics/hot.json')
+    const { data } = await app.$axios.get('topics/latest.json')
 
     return {
-      hotList: data
+      newList: data
     }
   },
   head () {
     return {
-      titleTemplate: '%s - 最热'
+      titleTemplate: '%s - 最新'
     }
   }
 }

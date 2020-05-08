@@ -1,14 +1,95 @@
 <template>
-  <div class="container">
-    <h1 v-if="error.statusCode === 404">页面不存在</h1>
-    <h1 v-else>应用发生错误异常</h1>
-    <nuxt-link to="/">首 页</nuxt-link>
+  <div class="wrap">
+    <div class="code-area">
+      <span style="color: #777; font-style:italic;">
+        // {{ error.statusCode }} {{ error.message }}.
+      </span>
+      <span>
+        <span style="color:#d65562;">
+          if
+        </span>
+        (<span style="color:#4ca8ef;">
+          !
+        </span><span style="font-style: italic;color:#bdbdbd;">
+          found
+        </span>)
+        {
+      </span>
+      <span>
+        <span style="padding-left: 15px;color:#2796ec">
+          <i style="width: 10px;display:inline-block" />throw
+        </span>
+        <span>
+          (<span style="color: #a6a61f">
+            "(╯°□°)╯︵ ┻━┻"
+          </span>);
+        </span>
+        <span style="display:block">
+          }
+        </span>
+      </span>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['error'],
-  layout: 'blog' // 你可以为错误页面指定自定义的布局
+  props: {
+    error: {
+      type: Object,
+      required: true,
+      default: () => {}
+    }
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+.wrap {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  cursor: default;
+
+  background: #081421;
+
+  line-height: 1.5em;
+
+  font-family: "Courier new";
+  color: #d3d7de;
+  font-size: 18px;
+}
+
+.code-area {
+  width: 340px;
+  min-width: 340px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background: #081421;
+}
+
+.code-area > span {
+  display: block;
+}
+
+@media screen and (max-width: 320px) {
+  .code-area {
+    width: 95%;
+    min-width: auto;
+    margin: auto;
+    padding: 5px;
+    padding-left: 10px;
+
+    line-height: 6.5vw;
+
+    font-size: 5vw;
+  }
+}
+</style>
